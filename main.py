@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import routers.auth
+import routers.images
 from database import create_tables
 
 @asynccontextmanager
@@ -15,6 +16,7 @@ app = FastAPI(lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(routers.auth.router)
+app.include_router(routers.images.router)
 
 templates = Jinja2Templates(directory="templates")
 
